@@ -16,7 +16,8 @@ public class Main
 	
 	private static void printRoom(Player player)
 	{
-		
+		Room room = new Room();
+		room = player.getCurrentRoom();
 	}
 	
 	private static String[] collectInput()
