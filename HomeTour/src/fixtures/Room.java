@@ -3,6 +3,7 @@ package fixtures;
 public class Room extends Fixture
 {
 	private Room[] exits;
+	private static final int EXIT_AMOUNT = 4;
 	/*
 	 * exits[0] --> North
 	 * exits[1] --> East
@@ -13,75 +14,78 @@ public class Room extends Fixture
 	public Room()
 	{
 		super();
-		this.exits = new Room[1];
-		exits[0] = null;
+		this.exits = null;
 	}
 	
-	public Room(String name, String shortDescription, String longDescription, String[] items)
+	public Room(String name, String shortDescription, String longDescription)
 	{
-		super(name, shortDescription, longDescription, items);
-		this.exits = new Room[4];
-		for(int i = 0; i < exits.length; i++)
+		super(name, shortDescription, longDescription);
+		this.exits = new Room[EXIT_AMOUNT];
+		for(int i = 0; i < EXIT_AMOUNT; i++)
 		{
 			exits[i] = null;
 		}
 	}
+
+	public String getName()
+	{
+		return this.name;
+	}
+
+	public void setName(String name)
+	{
+		this.name = name;
+	}
+
+	public String getShortDescription()
+	{
+		return this.shortDescription;
+	}
+
+	public void setShortDescription(String shortDescription)
+	{
+		this.shortDescription = shortDescription;
+	}
+
+	public String getLongDescription()
+	{
+		return this.longDescription;
+	}
+
+	public void setLongDescription(String longDescription)
+	{
+		this.longDescription = longDescription;
+	}
+	
+	public void setExits(Room[] exits)
+	{
+		this.exits = exits;
+	}
 	
 	public Room[] getExits()
 	{
-		return exits;
+		return this.exits;
 	}
 	
 	public Room getExit(String direction)
 	{
-		Room rv = new Room();
-		
+		Room returnValue = new Room();
 		switch(direction)
 		{
 			case "north":
-			{
-				rv = exits[0];
+				returnValue = exits[0];
 				break;
-			}
 			case "east":
-			{
-				rv = exits[1];
+				returnValue = exits[1];
 				break;
-			}
 			case "south":
-			{
-				rv = exits[2];
+				returnValue = exits[2];
 				break;
-			}
 			case "west":
-			{
-				rv = exits[3];
+				returnValue = exits[3];
 				break;
-			}
 		}
-		
-		return rv;
-	}
-
-	@Override
-	public String toString()
-	{
-		String rv;
-		
-		rv = this.name + "\n" +
-			 this.shortDescription + "\n" +
-			 this.longDescription + "\n";
-		if(items != null)
-		{
-			rv += "Items: \n";
-			for(int i = 0; i < items.length; i++)
-			{
-				rv += items[i] + "\n";
-			}
-		}
-		
-		
-		return rv;
+		return returnValue;
 	}
 	
 	
