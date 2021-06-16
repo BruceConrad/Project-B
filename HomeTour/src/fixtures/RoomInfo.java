@@ -9,6 +9,10 @@ public interface RoomInfo
 													"The dining hall of the old house.",
 													"The library of the old house.",
 													"The master bedroom of the old house."};
+	public static final String[][] itemsOfRoom = {{"Painting", "Telephone"},
+												  {"Round Table", "Chairs"},
+												  {"Books", "Bookcases"},
+												  {"Bed", "Dresser"}};
 	
 	public default String giveRoomName(int index)
 	{
@@ -23,5 +27,29 @@ public interface RoomInfo
 	public default String giveRoomLongDescription(int index)
 	{
 		return longDescription[index];
+	}
+	
+	public default String[] giveRoomItems(int index)
+	{
+		String[] rv = new String[2];
+		
+		for(int i = 0; i < 4; i++)
+		{
+			if(i == index)
+			{
+				for(int j = 0; j < 2; j++)
+				{
+					rv[j] = itemsOfRoom[index][j];
+				}
+			}
+		}
+		
+		return rv;
+		
+	}
+	
+	public default int arrLength()
+	{
+		return roomName.length;
 	}
 }

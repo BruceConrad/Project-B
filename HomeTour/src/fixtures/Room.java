@@ -1,5 +1,7 @@
 package fixtures;
 
+import java.util.Arrays;
+
 public class Room extends Fixture
 {
 	private Room[] exits;
@@ -17,9 +19,9 @@ public class Room extends Fixture
 		exits[0] = null;
 	}
 	
-	public Room(String name, String shortDescription, String longDescription)
+	public Room(String name, String shortDescription, String longDescription, String[] items)
 	{
-		super(name, shortDescription, longDescription);
+		super(name, shortDescription, longDescription, items);
 		this.exits = new Room[4];
 		for(int i = 0; i < exits.length; i++)
 		{
@@ -38,22 +40,22 @@ public class Room extends Fixture
 		
 		switch(direction)
 		{
-			case "North":
+			case "north":
 			{
 				rv = exits[0];
 				break;
 			}
-			case "East":
+			case "east":
 			{
 				rv = exits[1];
 				break;
 			}
-			case "South":
+			case "south":
 			{
 				rv = exits[2];
 				break;
 			}
-			case "West":
+			case "west":
 			{
 				rv = exits[3];
 				break;
@@ -62,4 +64,27 @@ public class Room extends Fixture
 		
 		return rv;
 	}
+
+	@Override
+	public String toString()
+	{
+		String rv;
+		
+		rv = this.name + "\n" +
+			 this.shortDescription + "\n" +
+			 this.longDescription + "\n";
+		if(items != null)
+		{
+			rv += "Items: \n";
+			for(int i = 0; i < items.length; i++)
+			{
+				rv += items[i] + "\n";
+			}
+		}
+		
+		
+		return rv;
+	}
+	
+	
 }

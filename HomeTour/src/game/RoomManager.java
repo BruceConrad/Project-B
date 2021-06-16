@@ -42,12 +42,13 @@ public class RoomManager implements RoomInfo
 
 	public void init()
 	{
-		for(int i = 0; i < 4; i++)
+		for(int i = 0; i < roomLibrary.arrLength(); i++)
 		{
 			String roomName = roomLibrary.giveRoomName(i);
 			String roomShortDes = roomLibrary.giveRoomShortDescription(i);
 			String roomLongDes = roomLibrary.giveRoomLongDescription(i);
-			Room newRoom = new Room(roomName, roomShortDes, roomLongDes);
+			String[] items = roomLibrary.giveRoomItems(i);
+			Room newRoom = new Room(roomName, roomShortDes, roomLongDes, items);
 			this.rooms[i] = newRoom;
 		}
 	}
