@@ -1,7 +1,6 @@
 package game;
 
 import java.util.Scanner;
-import fixtures.Fixture;
 import fixtures.Room;
 
 public class Main

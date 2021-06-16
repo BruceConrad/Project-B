@@ -1,7 +1,5 @@
 package fixtures;
 
-import java.util.Arrays;
-
 public class Room extends Fixture
 {
 	private Room[] exits;
