@@ -1,6 +1,8 @@
 package game;
 
 import java.util.Scanner;
+
+import fixtures.Items;
 import fixtures.Room;
 
 public class Main
@@ -9,17 +11,17 @@ public class Main
 	
 	public static void main(String[] args)
 	{
-		Player testPlayer = new Player();
 		RoomManager rm = new RoomManager();
-		rm.init();
-		testPlayer.setCurrentRoom(rm.getStartingRoom());
-		testPlayer.roomInfo();
+		Items itemList = new Items();
+		rm.init(itemList);
+		Player player = new Player(rm.getStartingRoom(), itemList);
+		player.roomInfo();
 		
 		String[] testCommand = collectInput();
 		
-		while(testCommand[0] != "quit")
+		while(!testCommand[0].equals("quit"))
 		{
-			parse(testCommand, testPlayer);
+			parse(testCommand, player, rm);
 			testCommand = collectInput();
 		}
 	}
@@ -41,9 +43,13 @@ public class Main
 		return returnValue;
 	}
 	
-	public static void parse(String[] command, Player player)
+	public static void parse(String[] command, Player player, RoomManager rm)
 	{
 		Room currentRoom = player.getCurrentRoom();
+		Items currentItems = new Items();
+		currentItems = player.getItemList();
+		String itemToInspect = "";
+		String item = "";
 		switch(command[0])
 		{
 			case "go":
@@ -62,6 +68,23 @@ public class Main
 			case "shout":
 			{
 				System.out.println("You shout hello, nobody answers...");
+				break;
+			}
+			case "inspect":
+			{
+				for(int i = 1; i < command.length; i++)
+				{
+					if(i > 1)
+					{
+						itemToInspect += " ";
+					}
+					itemToInspect += command[i];
+				}
+				item = currentItems.getItem(currentRoom, itemToInspect);
+				if(item != null)
+				{
+					rm.itemDescription(item);
+				}
 				break;
 			}
 			case "quit":

@@ -1,6 +1,8 @@
 package game;
 
 import fixtures.Room;
+import fixtures.Items;
+
 
 public class RoomManager
 {
@@ -32,7 +34,7 @@ public class RoomManager
 		this.rooms = rooms;
 	}
 	
-	public void init()
+	public void init(Items items)
 	{
 		Room foyer = new Room("The Foyer",
 							  "A small foyer",
@@ -64,5 +66,41 @@ public class RoomManager
 		this.rooms[1].setExits(libraryExits);
 		this.rooms[2].setExits(diningHallExits);
 		this.rooms[3].setExits(ballRoomExits);
+		
+		items.InitItems(rooms);
+	}
+	
+	public void itemDescription(String item)
+	{
+		switch(item)
+		{
+			case "window":
+				System.out.println("You see through a foggy window a snowy landscape of peace.");
+				break;
+			case "chandalier":
+				System.out.println("You see a grandiose chandalier. It is lit.");
+				break;
+			case "rugs":
+				System.out.println("You see rugs strewn across the floor messily.");
+				break;
+			case"a small crown":
+				System.out.println("You see a small crown, covered in dust.");
+				break;
+			case "bookcases":
+				System.out.println("You see gigantic bookcases towering over you, full of old books.");
+				break;
+			case"piles of books":
+				System.out.println("You see random piles of books, all dust-covered and moldy.");
+				break;
+			case "round table":
+				System.out.println("You see a round table, like the knights tale tells of.");
+				break;
+			case "chairs":
+				System.out.println("You see chairs around the table- 9 to be specific.");
+				break;
+			case "piano":
+				System.out.println("You see a piano- you play the Drunken Sailor sea shanty and sing!");
+				break;
+		}
 	}
 }
